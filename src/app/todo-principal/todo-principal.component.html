@@ -1,0 +1,57 @@
+<h1 class="title">My Tasks</h1>
+<ul>
+  <p *ngIf="todo.length == 0">
+ You don't have any tasks today!
+  </p>
+  <li *ngFor="let t of todo">
+    {{ t.task }}
+    <button (click)="remove(t)"><i class="far fa-trash-alt"></i></button>
+    <button *ngIf="!t.done" (click)="markAsDone(t)"><i class="far fa-check-circle"></i></button>
+    <button *ngIf="t.done" (click)="markAsUndone(t)"><i class="fas fa-check-circle"></i></button>
+  </li>
+</ul>
+
+<div class="modal" *ngIf="mode == 'add'">
+  <h1 class="text-center">New Task</h1>
+  <form [formGroup]="form">
+      <input
+        type="text"
+        placeholder="Task title"
+        maxlength="50"
+        formControlName="title"
+      />
+      <!--aparece somente quando o campo title for inválido, o outro
+    mostra se aquele campo foi modificado ou não-->
+      <small
+        class="danger"
+        *ngIf="form.controls.title.invalid && !form.controls.title.pristine"
+      >
+        This field must contain between 3 to 60 characters
+      </small>
+
+      <p class="text-center">
+        <!--o botão vai estar desabilitado então o campo estiver inválido-->
+        <button class="button" [disabled]="form.invalid" (click)="add()">
+          <i class="far fa-save"></i>
+          Save
+        </button>
+      </p>
+  </form>
+</div>
+
+<button
+  class="add-button animated fadeInUp button"
+  (click)="changeMode('add')"
+  *ngIf="mode == 'list'"
+>
+  <i class="fas fa-plus-circle"></i>
+  NEW TASK
+</button>
+<button
+  class="add-button animated fadeInUp button"
+  (click)="changeMode('list')"
+  *ngIf="mode == 'add'"
+>
+  <i class="fas fa-times"></i>
+  CANCEL
+</button>

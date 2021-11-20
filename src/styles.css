@@ -1,0 +1,13 @@
+body{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  background: rgb(246,160,190);
+  background: linear-gradient(70deg, rgba(246,160,190,1) 27%, rgba(160,204,254,1) 87%);
+  background: -moz-linear-gradient(70deg, rgba(246,160,190,1) 27%, rgba(160,204,254,1) 87%);
+  background: -webkit-linear-gradient(70deg, rgba(246,160,190,1) 27%, rgba(160,204,254,1) 87%);
+}
